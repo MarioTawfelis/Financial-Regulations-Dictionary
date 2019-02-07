@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Scraper</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Welcome to the Scraper Portal</h1>
+        <a href="{% url 'documents:new_document' %}"><span class="glyphicon glyphicon-plus"></span>Add document</a>
+    </div>
+{% endblock %}

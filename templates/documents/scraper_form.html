@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Scrapper</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>This is the scrapper form</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-default" type="submit" name="button">Scrape</button>
+        </form>
+
+    </div>
+{% endblock %}
