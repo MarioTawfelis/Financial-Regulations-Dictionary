@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import login, logout
 from . import views as account_views
 from dashboard import views as dashboard_views

@@ -12,8 +12,6 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
-        print(user_form.errors)
-        print(profile_form.errors)
 
         if user_form.is_valid() or profile_form.is_valid():
             user = user_form.save(commit=False)
@@ -24,10 +22,16 @@ def register(request):
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
 
-            profile_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
 
-            return redirect(reverse('accounts:profile'))
+            return redirect(reverse('accounts:view_profile'))
 
+        content = {'user_form': user_form,
+                   'profile_form': profile_form}
+
+        return render('accounts/registration_form.html', content)
 
     else:
         user_form = UserForm()

@@ -7,8 +7,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="jumbotron">
-        <form class="form-signin" method="post">
+    <div class="container">
+        <form class="form-signin" action="{% url 'accounts:login' %}" method="post">
             {% csrf_token %}
             <h1 class="form-signin-heading">Please Login</h1>
 
