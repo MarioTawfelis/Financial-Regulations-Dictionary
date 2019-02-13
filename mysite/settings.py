@@ -58,6 +58,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+AUTH_PROFILE_MODULE = 'accounts.Profile'
+
 TEMPLATES = [
     {
 

@@ -18,6 +18,7 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'password', 'email', 'first_name', 'last_name')
 
     def clean(self):
+        print("Validating password...")
         cleaned_data = super(UserForm, self).clean()
         password = cleaned_data.get('password')
         password_confirmation = cleaned_data.get('password_confirmation')
@@ -26,6 +27,8 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError(
                 "Password does not match"
             )
+        else:
+            print("Passwords match!")
 
 
 class ProfileForm(forms.ModelForm):
@@ -37,6 +40,18 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('job_title', 'company', 'birth_date', 'image')
+
+    def save(self, commit=True):
+        user = super(ProfileForm, self).save(commit=False)
+        user.job_title = self.cleaned_data['job_title']
+        user.company = self.cleaned_data['company']
+        user.birth_date = self.cleaned_data['birth_date']
+        user.image = self.cleaned_data['image']
+
+        if commit:
+            user.save()
+
+        return user
 
 
 class EditProfileForm(forms.ModelForm):

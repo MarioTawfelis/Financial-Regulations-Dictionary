@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.decorators.csrf import csrf_protect
-
 from accounts.forms import UserForm, ProfileForm, EditProfileForm, EditCredentialsForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -13,25 +12,18 @@ def register(request):
         user_form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
 
-        if user_form.is_valid() or profile_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save(commit=False)
-            username = user_form.cleaned_data['username']
-            password = user_form.cleaned_data['password']
-            email = user_form.cleaned_data['email']
-
-            user = User.objects.create_user(username=username, email=email, password=password)
+            user.set_password(user_form.cleaned_data.get('password'))
             user.save()
 
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
+            user.profile.job_title = profile_form.cleaned_data.get('job_title')
+            user.profile.company = profile_form.cleaned_data.get('company')
+            user.profile.birth_date = profile_form.cleaned_data.get('birth_date')
+            user.profile.image = profile_form.cleaned_data.get('image')
+            user.profile.save()
 
             return redirect(reverse('accounts:view_profile'))
-
-        content = {'user_form': user_form,
-                   'profile_form': profile_form}
-
-        return render('accounts/registration_form.html', content)
 
     else:
         user_form = UserForm()
@@ -50,8 +42,6 @@ def login(request):
         if user is not None:
             login(request, user)
             return redirect('accounts:success')
-        else:
-            return redirect('accounts:login')
 
     elif request.method == 'GET':
         return render(request, 'accounts/login')
