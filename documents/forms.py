@@ -6,3 +6,4 @@ class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
         fields = ('name', 'url', 'tags',)
+

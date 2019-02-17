@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import DocumentForm
-from .scraper import scrapeFCA
+from .scraper import find_regulator
 from .models import Document
 
 
@@ -16,7 +16,7 @@ def new_document(request):
         form = DocumentForm(request.POST)
         if form.is_valid():
             document = form.save(commit=False)
-            document.content = scrapeFCA(document.url)
+            document.content = find_regulator(document.url)
             document.save()
             form.save_m2m()
             return redirect('documents:downloads')

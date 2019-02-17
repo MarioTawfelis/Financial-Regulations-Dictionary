@@ -8,3 +8,6 @@ class Document(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField(null=True)
     tags = TaggableManager()
+
+    def __str__(self):
+        return self.name
