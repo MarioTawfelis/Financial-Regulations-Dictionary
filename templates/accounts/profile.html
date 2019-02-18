@@ -1,23 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block head %}
 <title>Profile</title>
+<link rel="stylesheet" type="text/css" href="{% static '/accounts/style.css' %}">
 {% endblock %}
 
 {% block content %}
+<br>
 <div class="container">
-    <h1>Profile</h1>
-    {% if user.profile.image %}
-    <img src="{{ user.profile.image.url }}" width="240">
-    {% endif %}
-    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
-    <p>Date of birth: {{ user.profile.birth_date }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Job title: {{ user.profile.job_title }}</p>
-    <p>Company: {{ user.profile.company }}</p>
+	<div class="row justify-content-center">
+        <div class="col-lg-3">
+            <div class="col vertical">
+                    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                    <p><strong>Date of birth: </strong>{{ user.profile.birth_date }}</p>
+                    <p><strong>Email: </strong>{{ user.email }}</p>
+                    <p><strong>Job title: </strong>{{ user.profile.job_title }}</p>
+                    <p><strong>Company: </strong>{{ user.profile.company }}</p>
+            </div>
+        </div>
 
-    <a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+        <div class="col-lg-3">
+            <div class="col">
+                {% if user.profile.image %}
+                <img class="rounded-circle" src="{{ user.profile.image.url }}" width="240" height="240">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <br>
+        <a class="btn btn-default" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+    </div>
+
 </div>
 
 {% endblock %}

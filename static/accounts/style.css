@@ -68,4 +68,8 @@ body {
     left: 0;
     z-index: 1;
 }
+.vertical {
+    margin-top:50;
+}
+
 

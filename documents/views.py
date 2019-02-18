@@ -17,6 +17,7 @@ def new_document(request):
         if form.is_valid():
             document = form.save(commit=False)
             document.content = find_regulator(document.url)
+            document.user_id = request.user.id
             document.save()
             form.save_m2m()
             return redirect('documents:downloads')
@@ -28,7 +29,12 @@ def new_document(request):
 
 @login_required
 def downloads(request):
-    documents = Document.objects.all()
+    user = request.user
+    try:
+        documents = Document.objects.filter(user_id=user.id)
+    except Document.DoesNotExist:
+        documents = None
+
     return render(request, 'documents/downloads_portal.html', {'documents': documents})
 
 

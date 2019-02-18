@@ -1,38 +1,42 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>Downloads Portal</title>
+<title>Downloads Portal</title>
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Welcome to the Downloads Portal</h1>
-        <br>
-        <table class="table table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Source</th>
-                <th>Tags</th>
-                <th>Captured on</th>
-                <th>Actions</th>
-            </tr>
-            {% for document in documents %}
-            <tr>
-                <td> {{ document.name }} </td>
-                <td> {{ document.url }} </td>
-                <td> {{ document.tags.all|join:", " }} </td>
-                <td> {{ document.timestamp}} </td>
-                <td style='white-space: nowrap'>
-                    <a class="btn btn-primary" href="{% url 'documents:download_document' pk=document.id %}">
-                        <span class="glyphicon glyphicon-download-alt"></span>Download
-                    </a>
-                    <a class="btn btn-danger" href="{% url 'documents:delete_document' pk=document.id %}">
-                        <span class="glyphicon glyphicon-remove"></span>Delete
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+<div class="container">
+    <br>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Source</th>
+            <th>Tags</th>
+            <th>Captured on</th>
+            <th>Actions</th>
+        </tr>
+        {% if documents %}
+        {% for document in documents %}
+        <tr>
+            <td> {{ document.name }}</td>
+            <td> {{ document.url }}</td>
+            <td> {{ document.tags.all|join:", " }}</td>
+            <td> {{ document.timestamp}}</td>
+            <td style="white-space: nowrap">
+                <a class="btn btn-primary" href="{% url 'documents:download_document' pk=document.id %}">
+                    <span class="glyphicon glyphicon-download-alt"></span>Download
+                </a>
+                <a class="btn btn-danger" href="{% url 'documents:delete_document' pk=document.id %}">
+                    <span class="glyphicon glyphicon-remove"></span>Delete
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
 
-    </div>
+        {% else %}
+        </table>
+        <p style="text-align: center;">No results to show</p>
+        {% endif %}
+
+</div>
 {% endblock %}
