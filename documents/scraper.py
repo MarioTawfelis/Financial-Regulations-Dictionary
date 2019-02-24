@@ -10,6 +10,10 @@ def find_regulator(url):
         scrapeFCA(url)
     elif "https://www.ecb.europa.eu/press/" in url:
         scrapeECB(url)
+    elif "https://www.esma.europa.eu/press-news/esma-news/" in url:
+        scrapeESMA(url)
+    elif "https://www.sec.gov/news/press-release/" in url:
+        scrapeSEC(url)
 
     return content
 
@@ -46,3 +50,24 @@ def scrapeECB(url):
 
     content = html_header + str(content_box)
 
+
+def scrapeESMA(url):
+    global content
+    page = requests.get(url)
+    soup = BeautifulSoup(page.text, "html5lib")
+
+    soup.find('div', attrs={"class": "esmapage_menu-fixed"}).decompose()
+
+    content_box = soup.find('div', attrs={"id": "esmapage_main-content"})
+
+    content = html_header + str(content_box)
+
+
+def scrapeSEC(url):
+    global content
+    page = requests.get(url)
+    soup = BeautifulSoup(page.text, "html5lib")
+
+    content_box = soup.find('div', attrs={"class": "content aside press-release"})
+
+    content = html_header + str(content_box)
