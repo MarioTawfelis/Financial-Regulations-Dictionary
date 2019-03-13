@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from django.http import HttpResponse
 from .forms import DocumentForm
 from .scraper import find_regulator
@@ -52,3 +53,24 @@ def download_document(request, pk):
 def delete_document(request, pk):
     Document.objects.filter(id=pk).delete()
     return redirect('documents:downloads')
+
+
+@login_required
+def search(request):
+    user = request.user
+    error = False
+
+    if 'q' in request.GET and request.GET['q']:
+        q = request.GET['q']
+
+        try:
+            documents = Document.objects.filter(user_id=user.id) \
+                .filter(Q(name__contains=q) | Q(tags__name__in=[q])).distinct()
+        except Document.DoesNotExist:
+            documents = None
+
+        return render(request, 'documents/downloads_portal.html', {'documents': documents})
+    else:
+        error = True
+
+        return render(request, 'documents/downloads_portal.html', {'error': error})

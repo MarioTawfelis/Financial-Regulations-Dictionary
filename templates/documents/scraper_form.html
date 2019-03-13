@@ -5,13 +5,22 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>This is the scraper form</h1>
-
-        <form method="post">
+    <div class="container col-lg-5">
+        <br>
+        <form class="form-scrape" action="{% url 'documents:new_document' %}" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-default" type="submit" name="button">Scrape</button>
+            <h1 class="form-scrape-heading">New Document</h1>
+
+            <input type="text" class="form-control" name="name" placeholder="Name" required="" autofocus="" />
+            <input type="url" class="form-control" name="url" placeholder="URL" required=""/>
+            <input type="text" class="form-control" name="tags" placeholder="Tags" required=""/>
+
+            <br>
+
+            <div class="text-center">
+                <button class="btn btn-default" type="submit" name="button">Scrape</button>
+            </div>
+
         </form>
 
     </div>

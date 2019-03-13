@@ -1,42 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block head %}
 <title>Downloads Portal</title>
+<link rel="stylesheet" type="text/css" href="{% static 'documents/styles.html' %}">
 {% endblock %}
 
 {% block content %}
 
-    <br>
-    <table class="table table-striped">
-        <tr>
-            <th>Name</th>
-            <th>Source</th>
-            <th>Tags</th>
-            <th>Captured on</th>
-            <th>Actions</th>
-        </tr>
-        {% if documents %}
-        {% for document in documents %}
-        <tr>
-            <td> {{ document.name }}</td>
-            <td> {{ document.url }}</td>
-            <td> {{ document.tags.all|join:", " }}</td>
-            <td> {{ document.timestamp}}</td>
-            <td style="white-space: nowrap">
-                <a class="btn btn-primary" href="{% url 'documents:download_document' pk=document.id %}">
-                    <span class="glyphicon glyphicon-download-alt"></span>Download
-                </a>
-                <a class="btn btn-danger" href="{% url 'documents:delete_document' pk=document.id %}">
-                    <span class="glyphicon glyphicon-remove"></span>Delete
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
+<br>
 
-        {% else %}
-        </table>
-        <p style="text-align: center;">No results to show</p>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        {% if error %}
+        <div class="alert alert-dismissible alert-danger">
+            <strong>Error!</strong> You forgot to add a search term.
+        </div>
         {% endif %}
+        <form class="form-search" method="get" action="{% url 'documents:search' %}">
+            <div class="input-group">
+                <input class="form-control" name="q" type="text" placeholder="Search..."/>
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Source</th>
+        <th>Tags</th>
+        <th>Captured on</th>
+        <th>Actions</th>
+    </tr>
+    {% if documents %}
+    {% for document in documents %}
+    <tr>
+        <td> {{ document.name }}</td>
+        <td> {{ document.url }}</td>
+        <td> {{ document.tags.all|join:", " }}</td>
+        <td> {{ document.timestamp}}</td>
+        <td style="white-space: nowrap">
+            <a class="btn btn-primary" href="{% url 'documents:download_document' pk=document.id %}">
+                <span class="glyphicon glyphicon-download-alt"></span>Download
+            </a>
+            <a class="btn btn-danger" href="{% url 'documents:delete_document' pk=document.id %}">
+                <span class="glyphicon glyphicon-remove"></span>Delete
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+
+    {% else %}
+</table>
+<p style="text-align: center;">No results to show</p>
+{% endif %}
 
 
 {% endblock %}
