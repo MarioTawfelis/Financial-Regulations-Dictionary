@@ -41,7 +41,7 @@ def downloads(request):
 
 @login_required
 def download_document(request, pk):
-    document = Document.objects.get(pk=pk)
+    document = Document.objects.filter(pk=pk)
     filename = document.name
     content = document.content
     response = HttpResponse(content, content_type='text/html')
@@ -58,19 +58,31 @@ def delete_document(request, pk):
 @login_required
 def search(request):
     user = request.user
-    error = False
 
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
+        f = request.GET['f']
+        print(f)
 
         try:
-            documents = Document.objects.filter(user_id=user.id) \
-                .filter(Q(name__contains=q) | Q(tags__name__in=[q])).distinct()
+            if f == "name":
+                documents = Document.objects.filter(user_id=user.id).filter(name__contains=q)
+            elif f == "tags":
+                documents = Document.objects.filter(user_id=user.id).filter(tags__name__in=q).distinct()
+            elif f == "content":
+                documents = Document.objects.filter(user_id=user.id).filter(content__contains=q)
+            else:
+                documents = Document.objects.filter(user_id=user.id).filter(
+                    Q(name__contains=q) | Q(tags__name__in=q) | Q(content__contains=q)).distinct()
+
         except Document.DoesNotExist:
             documents = None
 
         return render(request, 'documents/downloads_portal.html', {'documents': documents})
+
     else:
         error = True
 
-        return render(request, 'documents/downloads_portal.html', {'error': error})
+        documents = Document.objects.filter(user_id=user.id)
+
+    return render(request, 'documents/downloads_portal.html', {'documents': documents, 'error': error})

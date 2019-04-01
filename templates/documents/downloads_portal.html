@@ -10,25 +10,36 @@
 
 <br>
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
+<div class="container">
+
+
+    <form class="form-search" method="get" action="{% url 'documents:search' %}">
         {% if error %}
-        <div class="alert alert-dismissible alert-danger">
+
+        <div class="alert alert-dismissible alert-danger col-lg-11">
             <strong>Error!</strong> You forgot to add a search term.
         </div>
+
         {% endif %}
-        <form class="form-search" method="get" action="{% url 'documents:search' %}">
-            <div class="input-group">
-                <input class="form-control" name="q" type="text" placeholder="Search..."/>
-                <div class="input-group-btn">
-                    <div class="btn-group" role="group">
-                        <button class="btn btn-primary" type="submit">Search</button>
-                    </div>
-                </div>
+        <div class="form-row">
+            <div class="col-lg-8">
+                <input class="form-control" name="q" placeholder="Search" type="text">
             </div>
-        </form>
-    </div>
+            <div class="col-lg-2">
+                <select class="custom-select" name="f">
+                    <option selected="">Filter</option>
+                    <option value="name">Name</option>
+                    <option value="tags">Tags</option>
+                    <option value="content">Content</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-default" type="submit" name="button">Search</button>
+            </div>
+        </div>
+    </form>
 </div>
+
 
 <br>
 
