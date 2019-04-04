@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$', include('dashboard.urls', namespace='dashboard')),
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^documents/', include('documents.urls', namespace='documents')),
+    url(r'^scanner/', include('scanner.urls', namespace='scanner')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

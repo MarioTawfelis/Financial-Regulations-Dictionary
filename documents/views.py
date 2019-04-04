@@ -41,7 +41,7 @@ def downloads(request):
 
 @login_required
 def download_document(request, pk):
-    document = Document.objects.filter(pk=pk)
+    document = Document.objects.get(pk=pk)
     filename = document.name
     content = document.content
     response = HttpResponse(content, content_type='text/html')
