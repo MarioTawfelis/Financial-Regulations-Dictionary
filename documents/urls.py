@@ -8,6 +8,7 @@ app_name = 'documents'
 urlpatterns = [
                   url(r'^$', documents_views.new_document, name='new_document'),
                   url(r'^new$', documents_views.new_document, name='new_document'),
+                  url(r'^new(?P<url>\d+)$', documents_views.new_document, name='new_document'),
                   url(r'^downloads$', documents_views.downloads, name='downloads'),
                   url(r'^download-document/(?P<pk>\d+)$', documents_views.download_document, name='download_document'),
                   url(r'^delete-document/(?P<pk>\d+)$', documents_views.delete_document, name='delete_document'),

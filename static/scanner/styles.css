@@ -16,3 +16,7 @@ li.list-group-item{
 .meta-item {
     margin-right: 20px;
 }
+
+div.search-item__body {
+    padding-bottom: 10px;
+}

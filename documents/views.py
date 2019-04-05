@@ -13,7 +13,13 @@ def home(request):
 
 @login_required
 def new_document(request):
-    if request.method == 'POST':
+    if request.GET.get('url', ''):
+        url = request.GET.get('url', '')
+        form = DocumentForm()
+
+        return render(request, 'documents/scraper_form.html', {'form': form,
+                                                               'url': url})
+    elif request.method == 'POST':
         form = DocumentForm(request.POST)
         if form.is_valid():
             document = form.save(commit=False)

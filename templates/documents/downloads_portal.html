@@ -60,10 +60,10 @@
         <td> {{ document.timestamp}}</td>
         <td style="white-space: nowrap">
             <a class="btn btn-primary" href="{% url 'documents:download_document' pk=document.id %}">
-                <span class="glyphicon glyphicon-download-alt"></span>Download
+                Download
             </a>
             <a class="btn btn-danger" href="{% url 'documents:delete_document' pk=document.id %}">
-                <span class="glyphicon glyphicon-remove"></span>Delete
+                Delete
             </a>
         </td>
     </tr>
