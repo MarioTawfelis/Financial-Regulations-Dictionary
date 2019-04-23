@@ -3,13 +3,17 @@
 
 {% block head %}
 <title>Register</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" href="{% static '/accounts/js/scripts.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static '/accounts/style.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <br>
-    <form class="form-signup" action="{% url 'accounts:register' %}" enctype="multipart/form-data" method="post">
+
+    <form id="signup-form" class="form-signup" action="{% url 'accounts:register' %}" enctype="multipart/form-data"
+          method="post">
         {% csrf_token %}
         <div class="form-row">
 
@@ -18,62 +22,157 @@
                 <div class="form-group row">
                     <div class="col">
                         <input id="first_name" name="first_name" class="form-control" placeholder="First Name"
-                               type="text">
+                               type="text" required="" data-bv-notempty-message="This field is required">
+                        {% if user_form.first_name.errors %}
+                        <ul>
+                            {% for error in user_form.first_name.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                     <div class="col">
-                        <input id="last_name" name="last_name" class="form-control" placeholder="Last Name" type="text">
+                        <input id="last_name" name="last_name" class="form-control" placeholder="Last Name" type="text"
+                               required="">
+                        {% if user_form.last_name.errors %}
+                        <ul>
+                            {% for error in user_form.last_name.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <input id="birth_date" name="birth_date" class="form-control" placeholder="Date of birth" type="date">
+                    <input id="birth_date" name="birth_date" class="form-control" placeholder="Date of birth"
+                           type="date" required="">
+                    <small class="form-text text-muted">{{ profile_form.birth_date.help_text }}</small>
+                    {% if profile_form.birth_date.errors %}
+                    <ul>
+                        {% for error in profile_form.birth_date.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <input id="company" name="company" class="form-control" placeholder="Company" type="text">
+                    <input id="company" name="company" class="form-control" placeholder="Company" type="text"
+                           required="">
+                    {% if profile_form.company.errors %}
+                    <ul>
+                        {% for error in profile_form.company.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <input id="job_title" name="job_title" class="form-control" placeholder="Job title" type="text">
+                    <input id="job_title" name="job_title" class="form-control" placeholder="Job title" type="text"
+                           required="">
+                    {% if profile_form.job_title.errors %}
+                    <ul>
+                        {% for error in profile_form.job_title.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
                     <label for="image">Profile Picture</label>
-                    <input id="image" name="image" type="file" class="form-control-file">
+                    <input id="image" name="image" type="file" class="form-control-file" required="">
+                    {% if profile_form.image.errors %}
+                    <ul>
+                        {% for error in profile_form.image.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div><!-- form-group// -->
             </div>
 
             <div class="col-lg-6">
                 <h2>Credentials</h2>
                 <div class="form-group">
-                    <input id="email" name="email" class="form-control" placeholder="Email address" type="email">
+                    <input id="email" name="email" class="form-control" placeholder="Email address" type="email"
+                           required="">
+                    {% if user_form.email.errors %}
+                    <ul>
+                        {% for error in user_form.email.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <input id="username" name="username" class="form-control" placeholder="Username" type="text">
+                    <input id="username" name="username" class="form-control" placeholder="Username" type="text"
+                           required="" data-bv-notempty-message="The username is required">
+                    {% if user_form.username.errors %}
+                    <ul>
+                        {% for error in user_form.username.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div> <!-- form-group// -->
 
                 <div class="form-group row">
                     <div class="col">
                         <input id="password" name="password" class="form-control col" placeholder="Create password"
-                               type="password">
+                               type="password" required="">
+                        {% if user_form.password.errors %}
+                        <ul>
+                            {% for error in user_form.password.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                     <div class="col">
                         <input id="password_confirmation" name="password_confirmation" class="form-control col"
-                               placeholder="Retype password" type="password">
+                               placeholder="Retype password" type="password" required="">
+                        <span id='message'></span>
+                        {% if user_form.password_confirmation.errors %}
+                        <ul>
+                            {% for error in user_form.password_confirmation.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div> <!-- form-group// -->
-        </div>
             </div>
-
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary"> Create Account</button>
-                <p>Have an account? <a href="{% url 'accounts:login' %}">Log In</a></p>
-            </div>
-
         </div>
-    </form>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary"> Create Account</button>
+            <p>Have an account? <a href="{% url 'accounts:login' %}">Log In</a></p>
+        </div>
+
+</div>
+</form>
 </div> <!--container end.//-->
 
 {% endblock %}
 
+
+{% block js%}
+<script>
+
+    $(document).ready(function() {
+        $('#password, #password_confirmation').on('keyup', function () {
+            if ($('#password').val() == $('#password_confirmation').val()) {
+                $('#message').html('Matching').css('color', 'green');
+            } else
+                $('#message').html('Passwords must match!').css('color', 'red');
+        });
+
+    });
+
+</script>
+
+{% endblock js%}

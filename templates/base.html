@@ -1,6 +1,8 @@
 {% load static %}
 <html>
 <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" href="{% static '/accounts/js/scripts.js' %}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/materia/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static '/styles.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,12 +62,9 @@
 
 {% block content %}
 {% endblock %}
+{% block js%}
+{% endblock js%}
 </body>
-<script
-        src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+
+
 </html>

@@ -32,9 +32,10 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    job_title = forms.CharField(max_length=500)
-    company = forms.CharField(max_length=500)
-    birth_date = forms.DateField()
+    job_title = forms.CharField(max_length=500, required=True)
+    company = forms.CharField(max_length=500, required=True)
+    birth_date = forms.DateField(required=True, help_text="Format: DD/MM/YYYY", widget=forms.DateInput(format='%d/%m/%Y'),
+                                 input_formats=('%d/%m/%Y',))
     image = forms.ImageField()
 
     class Meta:
@@ -55,10 +56,11 @@ class ProfileForm(forms.ModelForm):
 
 
 class EditProfileForm(forms.ModelForm):
-    job_title = forms.CharField(max_length=500)
-    company = forms.CharField(max_length=30)
-    birth_date = forms.DateField()
-    image = forms.ImageField()
+    job_title = forms.CharField(max_length=500, required=True)
+    company = forms.CharField(max_length=500, required=True)
+    birth_date = forms.DateField(required=True, help_text="Format: DD/MM/YYYY", widget=forms.DateInput(format='%d/%m/%Y'),
+                                 input_formats=('%d/%m/%Y',))
+    image = forms.ImageField(help_text="Please re-upload your profile picture")
 
     class Meta:
         model = Profile

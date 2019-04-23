@@ -4,6 +4,7 @@ from accounts.forms import UserForm, ProfileForm, EditProfileForm, EditCredentia
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import Profile
 
 
 @csrf_protect
@@ -24,6 +25,10 @@ def register(request):
             user.profile.save()
 
             return redirect(reverse('accounts:view_profile'))
+        else:
+            print("Form is invalid!")
+            content = {'user_form': user_form,
+                       'profile_form': profile_form}
 
     else:
         user_form = UserForm()
@@ -31,7 +36,8 @@ def register(request):
 
         content = {'user_form': user_form,
                    'profile_form': profile_form}
-        return render(request, 'accounts/registration_form.html', content)
+
+    return render(request, 'accounts/registration_form.html', content)
 
 
 def login(request):
@@ -73,7 +79,9 @@ def edit_profile(request):
 
     else:
         user = request.user
-        profile_form = EditProfileForm(instance=user.profile)
+        profile = Profile.objects.get(user=request.user)
+        profile_data = {'profile': profile}
+        profile_form = EditProfileForm(initial=profile_data)
         credentials_form = EditCredentialsForm(instance=user)
         content = {'profile_form': profile_form,
                    'credentials_form': credentials_form}

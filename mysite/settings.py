@@ -60,6 +60,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+LOGOUT_REDIRECT_URL = 'accounts:login'
+
 AUTH_PROFILE_MODULE = 'accounts.Profile'
 
 TEMPLATES = [
