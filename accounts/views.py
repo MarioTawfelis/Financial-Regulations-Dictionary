@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.decorators.csrf import csrf_protect
-from accounts.forms import UserForm, ProfileForm, EditProfileForm, EditCredentialsForm
+from accounts.forms import UserForm, ProfileForm, EditProfileForm, EditCredentialsForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -44,13 +44,17 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':  # This is true if the user has already put in his credentials and clicked Login
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username,
-                            password=password)  # Check if username and password combination are valid
-        if user is not None:
-            login(request, user)
-            return redirect('accounts:success')
+        form = LoginForm(request.POST or None)
+        # user = authenticate(request, username=username,
+        #                     password=password)  # Check if username and password combination are valid
+        if form.is_valid():
+            user = form.login(request)
+            if user:
+                login(request, user)
+                return redirect('accounts:success')
+        else:
+            error = True
+            return render(request, 'accounts/login', {'form': form})
 
     elif request.method == 'GET':  # Just load the login form
         return render(request, 'accounts/login')

@@ -11,6 +11,19 @@
     <br>
     <form class="form-signin" action="{% url 'accounts:login' %}" method="post">
         {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <ul class='form-errors'>
+            {% for error in form.non_field_errors %}
+
+                <div class="alert alert-dismissible alert-danger col-lg-11">
+                   <strong>Access denied!</strong> {{ error }}
+                </div>
+
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         <h1 class="form-signin-heading">Please Login</h1>
 
         <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus=""/>
