@@ -22,7 +22,7 @@
                 <div class="form-group row">
                     <div class="col">
                         <input id="first_name" name="first_name" class="form-control" placeholder="First Name"
-                               type="text" required="" data-bv-notempty-message="This field is required">
+                               type="text" required="">
                         {% if user_form.first_name.errors %}
                         <ul>
                             {% for error in user_form.first_name.errors %}
@@ -83,7 +83,7 @@
 
                 <div class="form-group">
                     <label for="image">Profile Picture</label>
-                    <input id="image" name="image" type="file" class="form-control-file" required="">
+                    <input id="image" name="image" type="file" class="form-control-file">
                     {% if profile_form.image.errors %}
                     <ul>
                         {% for error in profile_form.image.errors %}
@@ -172,6 +172,7 @@
         });
 
     });
+
 
 </script>
 

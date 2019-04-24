@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 
+# Profile model for Users to store personal information
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=500, blank=True)
@@ -12,6 +13,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+""" Title: How to Extend Django User Model
+Author: Vitor Freitas
+Date: Jul 22, 2016
+Availability: https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html """
 
 
 def create_profile(sender, **kwargs):

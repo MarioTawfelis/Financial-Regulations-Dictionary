@@ -16,31 +16,72 @@
                 <h2>Personal information</h2>
                 <div class="form-group row">
                     <div class="col">
-                        <input id="first_name" name="first_name" value="{{ user.first_name }}" class="form-control" placeholder="First Name"
+                        <input id="first_name" name="first_name" value="{{ user.first_name }}" class="form-control"
+                               placeholder="First Name"
                                type="text">
+                        {% if credentials_form.first_name.errors %}
+                        <ul>
+                            {% for error in credentials_form.first_name.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                     <div class="col">
-                        <input id="last_name" name="last_name" value="{{ user.last_name }}" class="form-control" placeholder="Last Name" type="text">
+                        <input id="last_name" name="last_name" value="{{ user.last_name }}" class="form-control"
+                               placeholder="Last Name" type="text">
+                        {% if credentials_form.last_name.errors %}
+                        <ul>
+                            {% for error in credentials_form.last_name.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <input id="birth_date" name="birth_date" value="{{ user.profile.birth_date }}" class="form-control" placeholder="Date of birth"
-                           type="date">
-                    <small class="form-text text-muted">{{ user.profile.birth_date.help_text }}</small>
+                    <input id="birth_date" name="birth_date" value="{{ user.profile.birth_date }}" class="form-control"
+                           placeholder="Date of birth" type="date">
+                    <small class="form-text text-muted">{{ profile_form.birth_date.help_text }}</small>
+                    {% if profile_form.birth_date.errors %}
+                    <ul>
+                        {% for error in profile_form.birth_date.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <input id="company" name="company" value="{{ user.profile.company }}" class="form-control" placeholder="Company" type="text">
+                    <input id="company" name="company" value="{{ user.profile.company }}" class="form-control"
+                           placeholder="Company" type="text">
+                    {% if profile_form.company.errors %}
+                    <ul>
+                        {% for error in profile_form.company.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
-                    <input id="job_title" name="job_title" value="{{ user.profile.job_title }}" class="form-control" placeholder="Job title" type="text">
+                    <input id="job_title" name="job_title" value="{{ user.profile.job_title }}" class="form-control"
+                           placeholder="Job title" type="text">
+                    {% if profile_form.job_title.errors %}
+                    <ul>
+                        {% for error in profile_form.job_title.errors %}
+                        <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div> <!-- form-group// -->
 
                 <div class="form-group">
                     <label for="image">Profile Picture</label>
-                    <input id="image" name="image" value="{{ user.profile.image }}" type="file" class="form-control-file">
+                    <input id="image" name="image" value="{{ user.profile.image }}" type="file"
+                           class="form-control-file">
                     <small class="form-text text-muted">{{ user.profile.image.help_text }}</small>
                 </div><!-- form-group// -->
             </div>
@@ -48,7 +89,8 @@
             <div class="col-lg-6">
                 <h2>Credentials</h2>
                 <div class="form-group">
-                    <input id="email" name="email" value="{{ user.email }}" class="form-control" placeholder="Email address" type="email">
+                    <input id="email" name="email" value="{{ user.email }}" class="form-control"
+                           placeholder="Email address" type="email">
                 </div> <!-- form-group// -->
             </div>
         </div>

@@ -14,7 +14,7 @@
 <br>
 
 <nav class="navbar navbar-expand-xl navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Financial Regulations Dictionary</a>
+    <a class="navbar-brand" href="{% url 'dashboard:home' %}">Financial Regulations Dictionary</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
             aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,7 +32,7 @@
                 <a class="nav-link" href="{% url 'accounts:view_profile' %}">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'scanner:home' %}">Scanner</a>
+                <a class="nav-link" href="{% url 'scanner:home' %}">News Feed</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'documents:new_document' %}">Scraper</a>

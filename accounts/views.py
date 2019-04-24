@@ -9,11 +9,13 @@ from .models import Profile
 
 @csrf_protect
 def register(request):
-    if request.method == 'POST':
+    if request.method == 'POST':  # Check if user is submitting a form
         user_form = UserForm(request.POST)
         profile_form = ProfileForm(request.POST, request.FILES)
 
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():  # Perform server-side validation on user inputs
+            # Sanitize data by using cleaned_data before storing in database
+            # commit=False > do not create the user yet
             user = user_form.save(commit=False)
             user.set_password(user_form.cleaned_data.get('password'))
             user.save()
@@ -25,12 +27,12 @@ def register(request):
             user.profile.save()
 
             return redirect(reverse('accounts:view_profile'))
-        else:
+        else:  # If form validation failed, reload form with errors
             print("Form is invalid!")
             content = {'user_form': user_form,
                        'profile_form': profile_form}
 
-    else:
+    else:  # If it is not a form submission then load form
         user_form = UserForm()
         profile_form = ProfileForm()
 
@@ -41,22 +43,23 @@ def register(request):
 
 
 def login(request):
-    if request.method == 'POST':
+    if request.method == 'POST':  # This is true if the user has already put in his credentials and clicked Login
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username,
+                            password=password)  # Check if username and password combination are valid
         if user is not None:
             login(request, user)
             return redirect('accounts:success')
 
-    elif request.method == 'GET':
+    elif request.method == 'GET':  # Just load the login form
         return render(request, 'accounts/login')
 
 
 @login_required
 def view_profile(request, pk=None):
     if pk:
-        user = User.objects.get(pk=pk).select_related('profile')
+        user = User.objects.get(pk=pk).select_related('profile')  # Find user Profile by user_id
     else:
         user = request.user
 
@@ -66,7 +69,7 @@ def view_profile(request, pk=None):
 
 @login_required
 def edit_profile(request):
-    if request.method == 'POST':
+    if request.method == 'POST':  # Submit form
         profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.profile)
         credentials_form = EditCredentialsForm(request.POST, instance=request.user)
 
@@ -74,10 +77,12 @@ def edit_profile(request):
             profile_form.save()
             credentials_form.save()
             return redirect('accounts:view_profile')
-        else:
-            return redirect('accounts:edit_profile')
+        else:  # If forms are not valid, reload form and show errors
+            content = {'profile_form': profile_form,
+                       'credentials_form': credentials_form}
+            return render(request, 'accounts/edit_profile.html', content)
 
-    else:
+    else:  # Load form and dynamically initialise form fields using Profile model
         user = request.user
         profile = Profile.objects.get(user=request.user)
         profile_data = {'profile': profile}

@@ -1,31 +1,38 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>Scraper</title>
+<title>Scraper</title>
 {% endblock %}
 
 {% block content %}
-    <div class="container col-lg-5">
+<div class="container col-lg-5">
+    <br>
+    <form class="form-scrape" action="{% url 'documents:new_document' %}" method="post">
+        {% csrf_token %}
+        {% if error %}
+
+        <div class="alert alert-dismissible alert-danger col-lg-11">
+            <strong>Ops!</strong> This website is not supported yet.
+        </div>
+
+        {% endif %}
+        <h1 class="form-scrape-heading">New Document</h1>
+
+        <input type="text" class="form-control" name="name" placeholder="Name" required="" autofocus=""/>
+        {% if url %}
+        <input type="url" class="form-control" name="url" placeholder="URL" required="" value="{{ url }}"/>
+        {% else %}
+        <input type="url" class="form-control" name="url" placeholder="URL" required=""/>
+        {% endif %}
+        <input type="text" class="form-control" name="tags" placeholder="Tags" required=""/>
+
         <br>
-        <form class="form-scrape" action="{% url 'documents:new_document' %}" method="post">
-            {% csrf_token %}
-            <h1 class="form-scrape-heading">New Document</h1>
 
-            <input type="text" class="form-control" name="name" placeholder="Name" required="" autofocus="" />
-            {% if url %}
-                <input type="url" class="form-control" name="url" placeholder="URL" required="" value="{{ url }}"/>
-            {% else %}
-                <input type="url" class="form-control" name="url" placeholder="URL" required=""/>
-            {% endif %}
-            <input type="text" class="form-control" name="tags" placeholder="Tags" required=""/>
+        <div class="text-center">
+            <button class="btn btn-default" type="submit" name="button">Scrape</button>
+        </div>
 
-            <br>
+    </form>
 
-            <div class="text-center">
-                <button class="btn btn-default" type="submit" name="button">Scrape</button>
-            </div>
-
-        </form>
-
-    </div>
+</div>
 {% endblock %}

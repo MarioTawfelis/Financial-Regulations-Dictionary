@@ -59,9 +59,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+LOGIN_REDIRECT_URL = 'dashboard:home'
+
 LOGOUT_REDIRECT_URL = 'accounts:login'
 
 AUTH_PROFILE_MODULE = 'accounts.Profile'
+
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
 TEMPLATES = [
     {
