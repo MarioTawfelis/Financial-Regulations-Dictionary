@@ -13,6 +13,7 @@ def home(request):
 
 @login_required
 def new_document(request):
+    error = ''
     # Check if user is trying to scrape via News Feed
     # If yes, pass URL to Scraper form
     if request.GET.get('url', ''):
