@@ -75,11 +75,11 @@ Now, using your preferred browser, go to http://127.0.0.1:8000/
 
 
 ## Author
-Name: Mario Tawfelis
-Degree: BEng Computer Systems Engineering with Industrial Experience
-University: Queen Mary University of London
-Personal email: mario.tawfelis@outlook.com
-Academic email: m.sobhy@se15.qmul.ac.uk
+Name: Mario Tawfelis<br />
+Degree: BEng Computer Systems Engineering with Industrial Experience<br />
+University: Queen Mary University of London<br />
+Personal email: mario.tawfelis@outlook.com<br />
+Academic email: m.sobhy@se15.qmul.ac.uk<br />
 Student ID: 150612793
 
 
