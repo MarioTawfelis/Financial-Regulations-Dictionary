@@ -9,12 +9,12 @@ Follow these step-by-step instructions to run FRD on your machine.
 ### Step 1
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install [virtualenv](https://virtualenv.pypa.io/en/latest/).
 
-To get [pip], run the following command in your terminal
+To get [pip](https://pip.pypa.io/en/stable/), run the following command in your terminal
 ```bash
 easy_install pip
 ```
 
-After [pip] is installed successfully, run the following commance to install [virtualenv](https://virtualenv.pypa.io/en/latest/)
+After [pip](https://pip.pypa.io/en/stable/) is installed successfully, run the following commance to install [virtualenv](https://virtualenv.pypa.io/en/latest/)
 ```bash
 pip install virtualenv
 ```
@@ -46,7 +46,7 @@ Wait for the installations to finish and then move to the next step
 
 
 ### Step 4
-After successfully installing all the dependencies as instructed, before you run FRD, make sure you are at the directory which contains the [manage.py] file. This should be in the right under the parent directory along with the README.md and requirements.txt files.
+After successfully installing all the dependencies as instructed, before you run FRD, make sure you are in the parent directory which contains the manage.py file. This should be right under the parent directory along with the README.md and requirements.txt files.
 
 To start FRD, run the following command
 ```bash
