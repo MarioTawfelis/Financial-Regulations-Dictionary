@@ -77,11 +77,11 @@ Now, using your preferred browser, go to http://127.0.0.1:8000/
 For testing FRD without registering a new user, please use the following credentials:
 
 ### Test User 1
-Username: admin
+Username: admin<br />
 Password: frdtestpass
 
 ### Test User 2
-Username: ioanna_mesimeri
+Username: ioanna_mesimeri<br />
 Password: frdtestpass2
 
 
