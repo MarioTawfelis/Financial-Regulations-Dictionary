@@ -1,4 +1,4 @@
-# Financial Regulations Dictionary by Mario Tawfelis
+# Financial Regulations Dictionary
 
 Financial Regulations Dictionary (FRD) is a platform that aims to help compliance officers to better manage all the financial regulations that matter them in practical and efficient manner. The platform provides a set of tools that allow the user to monitor, capture and search through new regulatory updates.
 
@@ -72,6 +72,17 @@ Quit the server with CONTROL-C.
 ```
 
 Now, using your preferred browser, go to http://127.0.0.1:8000/
+
+## Testing
+For testing FRD without registering a new user, please use the following credentials:
+
+### Test User 1
+Username: admin
+Password: frdtestpass
+
+### Test User 2
+Username: ioanna_mesimeri
+Password: frdtestpass2
 
 
 ## Author
