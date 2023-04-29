@@ -1,10 +1,10 @@
-from django.conf.urls import url
+from django.urls import re_path
 from . import views as dashboard_views
 
 
 app_name = 'dashboard'
 
 urlpatterns = [
-    url(r'^$', dashboard_views.home, name='home'),
+    re_path(r'^$', dashboard_views.home, name='home'),
 
 ]
