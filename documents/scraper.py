@@ -26,7 +26,7 @@ def scrapeFCA(url):
     page = requests.get(url)  # Load web page
     soup = BeautifulSoup(page.text, 'html.parser')  # Create soup to allow us to parse through the web page
 
-    # Clean web page but removing unwanted content such as social media links and feedback forms
+    # Clean web page by removing unwanted content such as social media links and feedback forms
     soup.find('div', attrs={"class": "page-feedback"}).decompose()
     soup.find('div', attrs={"class": "header__social-links"}).decompose()
     soup.find('div', attrs={"class": "rhn"}).decompose()

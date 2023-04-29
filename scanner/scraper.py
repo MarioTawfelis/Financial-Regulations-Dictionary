@@ -29,7 +29,6 @@ def get_latest():
         last_div = warning('div')[-1]
         last_div.insert_after(scrape_btn)  # Add Scrape button after each Warning
 
-    clean_html = str(warnings).replace("[", "").replace("]", "").replace(">,",
-                                                                         ">")  # Sanitize HTML by removing uunwantd characters
+    clean_html = str(warnings).replace("[", "").replace("]", "").replace(">,", ">")  # Sanitize HTML by removing unwanted characters
 
     return clean_html

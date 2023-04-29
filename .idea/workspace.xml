@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e756c29-1652-4485-b474-3238116e38cc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Financial-Regulations-Dictionary.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Financial-Regulations-Dictionary.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dashboard/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dashboard/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/documents/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documents/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/documents/scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner/scraper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scanner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
