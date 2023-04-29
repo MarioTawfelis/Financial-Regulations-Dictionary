@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e756c29-1652-4485-b474-3238116e38cc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/documents/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/documents/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documents/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/documents/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

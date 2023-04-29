@@ -21,6 +21,7 @@ def new_document(request):
         form = DocumentForm()
 
         return render(request, 'documents/scraper_form.html', {'form': form, 'url': url})
+
     elif request.method == 'POST':  # True if user is submitting the form
         form = DocumentForm(request.POST)
         if form.is_valid():

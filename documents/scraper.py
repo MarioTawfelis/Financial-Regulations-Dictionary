@@ -29,10 +29,9 @@ def scrapeFCA(url):
     # Clean web page by removing unwanted content such as social media links and feedback forms
     soup.find('div', attrs={"class": "page-feedback"}).decompose()
     soup.find('div', attrs={"class": "header__social-links"}).decompose()
-    soup.find('div', attrs={"class": "rhn"}).decompose()
+    soup.find('div', attrs={"class": "article-sidebar"}).decompose()
 
-    content_box = soup.findAll('div', attrs={"class": "container"})[8]  # Scrape content (i.e. regulatory update)
-
+    content_box = soup.findAll('div', attrs={"class": "region-content"})[0]  # Scrape content (i.e. regulatory update)
     content = html_header + str(content_box)
 
 
